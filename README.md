@@ -11,6 +11,7 @@
 * Terraform
 * Ubuntu 20.04 LTS Focal Fossa
 * VirtualBox
+* VSCode
 
 # Installation on MacOS Catalina
 ```shell
