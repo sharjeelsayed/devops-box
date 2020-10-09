@@ -11,7 +11,7 @@
 
 # Connecting via VSCode
 
-```bash
+```shell
 git clone https://github.com/sharjeelsayed/devops-box.git
 cd devops-box
 vagrant ssh-config >> "$HOME"/.ssh/config
