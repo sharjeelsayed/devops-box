@@ -10,16 +10,20 @@
 * Packer
 * Terraform
 
-# Connecting via VSCode
-
+# Installation
 ```shell
 git clone https://github.com/sharjeelsayed/devops-box.git
-cd devops-box
-vagrant ssh-config >> "$HOME"/.ssh/config
+cd devops-box  
+vagrant up  
+vagrant ssh-config >> "$HOME"/.ssh/config  
+ssh devops-box  
 ```
-Open VSCode  
+
+# Connecting via VSCode
+
+Post Installation, Launch VSCode  
 Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
-Voila..You are connected !!
+Voila..You are connected !!  
 
 # Sources
 https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=virtualbox&q=ubuntu  
