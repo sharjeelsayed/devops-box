@@ -1,8 +1,8 @@
 # DevOps box
 
-* A Vagrant project for VirtualBox to set up an Ubuntu box with DevOps tools
+* A Vagrant project to set up an instance of Ubuntu 20.04 on Virtualbox with DevOps tools
 
-# Tools included
+# Tools included (Latest Versions)
 * Ansible
 * AWS CLI
 * Docker
@@ -10,8 +10,9 @@
 * Packer
 * Terraform
 * Ubuntu 20.04 LTS Focal Fossa
+* VirtualBox
 
-# Installation on MacOS
+# Installation on MacOS Catalina
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
 brew cask install virtualbox # Install VirtualBox
@@ -24,7 +25,10 @@ vagrant destroy # When you are done, remove the instance from VirtualBox and cle
 ```
 
 # Connecting via VSCode
-Post Installation, Launch VSCode  
+```shell
+brew cask install vscode
+code
+```
 Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
 Voila..You are connected !!  
 
