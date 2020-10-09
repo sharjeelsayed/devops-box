@@ -18,9 +18,10 @@
 
 brew cask install virtualbox && virtualbox # Install and launch VirtualBox
 
-brew cask install vagrant
-git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  
-vagrant up  # Setup and launch an Ubuntu instance on VirtualBox
+brew cask install vagrant # Install Vagrant
+
+git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  && vagrant up # Setup and launch an Ubuntu instance on VirtualBox
+
 vagrant ssh-config >> "$HOME"/.ssh/config  # Configure ssh for login
 ssh devops-box  
 
