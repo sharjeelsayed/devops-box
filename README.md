@@ -22,7 +22,6 @@ vagrant destroy # Remove the instance from VirtualBox and cleanup
 ```
 
 # Connecting via VSCode
-
 Post Installation, Launch VSCode  
 Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
 Voila..You are connected !!  
