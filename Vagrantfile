@@ -1,6 +1,6 @@
 Vagrant.configure(2) do |config|
 	config.vm.define "devops-box" do |devbox|
-		devbox.vm.box = "ubuntu/focal64"
+		devbox.vm.box = "generic/ubuntu1804"
     		devbox.vm.provision "shell", path: "scripts/install.sh"
     		devbox.vm.provider "virtualbox" do |v|
     		  v.memory = 4096
