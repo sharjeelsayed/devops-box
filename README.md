@@ -5,3 +5,5 @@
 * Terraform
 * AWS CLI
 * Ansible
+* Packer
+* Docker
