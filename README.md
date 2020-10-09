@@ -7,16 +7,17 @@
 * AWS CLI
 * Docker
 * Git
-* Packer 1.6.4
-* Terraform 0.13.4
-* Ubuntu 18.04
+* Packer
+* Terraform
+* Ubuntu 20.04 LTS Focal Fossa
 
-# Installation
+# Installation on MacOS
 ```shell
-git clone https://github.com/sharjeelsayed/devops-box.git
-cd devops-box  
-vagrant up  
-vagrant ssh-config >> "$HOME"/.ssh/config  
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
+brew cask install virtualbox # Install VirtualBox
+git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  
+vagrant up  # Setup an Ubuntu Instance on VirtualBox
+vagrant ssh-config >> "$HOME"/.ssh/config  # Configure ssh for login
 ssh devops-box  
 
 vagrant destroy # When you are done, remove the instance from VirtualBox and cleanup  
