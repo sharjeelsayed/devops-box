@@ -10,6 +10,14 @@
 * Terraform
 
 # Connecting via VSCode
+
+```bash
+git clone https://github.com/sharjeelsayed/devops-box.git
+cd devops-box
+vagrant ssh-config >> "$HOME"/.ssh/config
+⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"
+```
+
 https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh
 https://medium.com/@lizrice/ssh-to-vagrant-from-vscode-5b2c5996bc0e
 
