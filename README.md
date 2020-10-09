@@ -1,5 +1,5 @@
 # DevOps box
-* A Vagrant project with an Ubuntu box with the tools needed to do DevOps
+* A Vagrant project for VirtualBox to set up an Ubuntu box with DevOps tools
 
 # Tools included
 * Ansible
