@@ -14,7 +14,7 @@ fi
 && ssh-keygen -f /home/ubuntu/.ssh/mykey -N '' \
 && chown -R ubuntu:ubuntu /home/ubuntu/.ssh
 '
-sudo hostnamectl set-hostname devops-box
+hostnamectl set-hostname devops-box
 
 # install packages
 if [ ${REDHAT_BASED} ] ; then
