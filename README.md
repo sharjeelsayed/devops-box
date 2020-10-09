@@ -17,6 +17,8 @@ cd devops-box
 vagrant up  
 vagrant ssh-config >> "$HOME"/.ssh/config  
 ssh devops-box  
+
+vagrant destroy # Remove the instance from VirtualBox and cleanup  
 ```
 
 # Connecting via VSCode
