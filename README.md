@@ -15,9 +15,12 @@
 # Installation on MacOS Catalina
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
+
 brew cask install virtualbox && virtualbox # Install and launch VirtualBox
+
+brew cask install vagrant
 git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  
-vagrant up  # Setup an Ubuntu Instance on VirtualBox
+vagrant up  # Setup and launch an Ubuntu instance on VirtualBox
 vagrant ssh-config >> "$HOME"/.ssh/config  # Configure ssh for login
 ssh devops-box  
 
