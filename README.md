@@ -15,7 +15,7 @@
 # Installation on MacOS Catalina
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
-brew cask install virtualbox # Install VirtualBox
+brew cask install virtualbox && virtualbox # Install and launch VirtualBox
 git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  
 vagrant up  # Setup an Ubuntu Instance on VirtualBox
 vagrant ssh-config >> "$HOME"/.ssh/config  # Configure ssh for login
@@ -26,8 +26,7 @@ vagrant destroy # When you are done, remove the instance from VirtualBox and cle
 
 # Connecting via VSCode
 ```shell
-brew cask install vscode # Install VSCode
-code #Launch VSCode
+brew cask install vscode && code # Install and launch VSCode
 ```
 Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
 Voila..You are connected !!  
