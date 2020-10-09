@@ -7,8 +7,9 @@
 * AWS CLI
 * Docker
 * Git
-* Packer
-* Terraform
+* Packer 1.6.4
+* Terraform 0.13.4
+* Ubuntu 18.04
 
 # Installation
 ```shell
