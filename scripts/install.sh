@@ -25,6 +25,7 @@ else
 fi
 # add docker privileges
 usermod -G docker ubuntu
+usermod -G docker vagrant
 # install awscli and ebcli
 pip3 install -U awscli
 pip3 install -U awsebcli
