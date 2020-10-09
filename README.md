@@ -18,7 +18,7 @@ cd devops-box
 vagrant ssh-config >> "$HOME"/.ssh/config
 ```
 Open VSCode  
-Type ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
+Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"  
 Voila..You are connected !!
 
 # Sources
