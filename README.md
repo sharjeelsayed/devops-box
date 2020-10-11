@@ -19,9 +19,7 @@
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
 
-brew cask install virtualbox # Install VirtualBox
-
-brew cask install vagrant # Install Vagrant
+brew cask install virtualbox vagrant # Install VirtualBox and vagrant
 
 git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  && vagrant up # Setup and launch an Ubuntu instance on VirtualBox
 
