@@ -7,6 +7,8 @@
 * AWS CLI
 * Docker
 * Git
+* Graphviz
+* jq
 * Packer
 * Terraform
 * Ubuntu 20.04 LTS Focal Fossa

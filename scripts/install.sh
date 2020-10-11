@@ -19,10 +19,10 @@ hostnamectl set-hostname devops-box
 # install packages
 if [ ${REDHAT_BASED} ] ; then
   yum -y update
-  yum install -y docker ansible unzip wget jq
+  yum install -y docker ansible unzip wget jq graphviz
 else 
   apt-get update
-  apt-get -y install docker.io ansible unzip python3-pip jq
+  apt-get -y install docker.io ansible unzip python3-pip jq graphviz
 fi
 # add docker privileges
 #usermod -G docker ubuntu
