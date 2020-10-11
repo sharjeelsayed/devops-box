@@ -19,7 +19,7 @@
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)" # Install Homebrew
 
-brew cask install virtualbox && virtualbox # Install and launch VirtualBox
+brew cask install virtualbox # Install VirtualBox
 
 brew cask install vagrant # Install Vagrant
 
