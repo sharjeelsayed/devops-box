@@ -21,7 +21,8 @@ if [ ${REDHAT_BASED} ] ; then
   yum -y update
   yum install -y docker ansible unzip wget jq graphviz chrony
 else 
-  apt-get update
+  apt update
+  apt upgrade
   apt-get -y install docker.io ansible unzip python3-pip jq graphviz chrony
 fi
 
@@ -29,43 +30,22 @@ fi
 systemctl start chrony
 systemctl enable chrony
 timedatectl set-timezone Asia/Kolkata #Set Time Zone to IST
-# add docker privileges
-#usermod -G docker ubuntu
+
+# Add docker privileges
+usermod -G docker ubuntu
 usermod -G docker vagrant
 # install awscli and ebcli
 pip3 install -U awscli
 pip3 install -U awsebcli
 
-#terraform
-: '
-T_VERSION=$(/usr/local/bin/terraform -v | head -1 | cut -d ' ' -f 2 | tail -c +2)
-T_RETVAL=${PIPESTATUS[0]}
-'
-
-: '
-[[ $T_VERSION != $TERRAFORM_VERSION ]] || [[ $T_RETVAL != 0 ]] \
-&& wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-&& unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
-&& rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-'
+# Terraform Installation
 #TERRAFORM_VERSION="0.13.4"
 TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')
 wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
 && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
 && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
-# packer
-: '
-P_VERSION=$(/usr/local/bin/packer -v)
-P_RETVAL=$?
-'
-
-: '
-[[ $P_VERSION != $PACKER_VERSION ]] || [[ $P_RETVAL != 1 ]] \
-&& wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
-&& unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin \
-&& rm packer_${PACKER_VERSION}_linux_amd64.zip
-'
+# Packer Installation
 #PACKER_VERSION="1.6.4"
 PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r -M '.current_version')
 wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
