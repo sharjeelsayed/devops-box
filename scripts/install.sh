@@ -19,11 +19,16 @@ hostnamectl set-hostname devops-box
 # install packages
 if [ ${REDHAT_BASED} ] ; then
   yum -y update
-  yum install -y docker ansible unzip wget jq graphviz
+  yum install -y docker ansible unzip wget jq graphviz chrony
 else 
   apt-get update
-  apt-get -y install docker.io ansible unzip python3-pip jq graphviz
+  apt-get -y install docker.io ansible unzip python3-pip jq graphviz chrony
 fi
+
+# Enable and start Chrony
+systemctl start chrony
+systemctl enable chrony
+
 # add docker privileges
 #usermod -G docker ubuntu
 usermod -G docker vagrant
