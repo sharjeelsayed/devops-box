@@ -28,7 +28,7 @@ fi
 # Enable and start Chrony
 systemctl start chrony
 systemctl enable chrony
-
+timedatectl set-timezone Asia/Kolkata #Set Time Zone to IST
 # add docker privileges
 #usermod -G docker ubuntu
 usermod -G docker vagrant
