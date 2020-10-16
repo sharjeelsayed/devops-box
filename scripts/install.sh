@@ -16,14 +16,13 @@ fi
 '
 hostnamectl set-hostname devops-box
 
-# install packages
+# Install packages
 if [ ${REDHAT_BASED} ] ; then
   yum -y update
-  yum install -y docker ansible unzip wget jq graphviz chrony
+  yum install -y docker ansible unzip wget jq graphviz chrony curl
 else 
-  apt update
-  apt upgrade
-  apt-get -y install docker.io ansible unzip python3-pip jq graphviz chrony
+  apt -y update && apt -y upgrade
+  apt -y install docker.io ansible unzip python3-pip jq graphviz chrony curl
 fi
 
 # Enable and start Chrony
@@ -32,21 +31,20 @@ systemctl enable chrony
 timedatectl set-timezone Asia/Kolkata #Set Time Zone to IST
 
 # Add docker privileges
-usermod -G docker ubuntu
+#usermod -G docker ubuntu
 usermod -G docker vagrant
-# install awscli and ebcli
+
+# Install awscli and ebcli
 pip3 install -U awscli
 pip3 install -U awsebcli
 
 # Terraform Installation
-#TERRAFORM_VERSION="0.13.4"
 TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')
 wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
 && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
 && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 # Packer Installation
-#PACKER_VERSION="1.6.4"
 PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r -M '.current_version')
 wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
 && unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin \
@@ -54,5 +52,5 @@ wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_
 
 # clean up
 if [ ! ${REDHAT_BASED} ] ; then
-  apt-get clean
+  apt clean
 fi
