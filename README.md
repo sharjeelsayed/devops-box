@@ -5,6 +5,7 @@
 # Tools included (Latest Versions)
 * Ansible
 * AWS CLI
+* AWS EB CLI
 * Docker
 * Git
 * Graphviz
