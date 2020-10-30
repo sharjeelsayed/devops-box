@@ -1,38 +1,40 @@
 BOX_IMAGE = "bento/ubuntu-20.04"
 MEMORY = 1024
 CPU = 1
+NODE_COUNT = 1
 
 Vagrant.configure("2") do |config|
-	#Optionally add a bridge network called public_network on en0
-	#config.vm.network "public_network", bridge: "en0: Wi-Fi (Wireless)"
-	config.vm.define "devops-box" do |devops|
-		devops.vm.box = BOX_IMAGE
-		devops.vm.provider "virtualbox" do |v|
-			v.name = "devops-box"
-			v.memory = MEMORY
-    		v.cpus = CPU
-		end
-		devops.vm.provision "shell", path: "scripts/install.sh"
-		devops.vm.provision "shell", inline: <<-SHELL
-			hostnamectl set-hostname devops-box
-			apt -y update && apt -y upgrade
-		SHELL
+	
+	# Common Configuration for all nodes
+	config.vm.box = BOX_IMAGE
+	config.vm.provider "virtualbox" do |v|
+		v.memory = MEMORY
+		v.cpus = CPU
 	end
+	config.vm.provision "shell", path: "scripts/install.sh"
+	config.vm.provision "shell", inline: <<-SHELL
+		apt -y update && apt -y upgrade
+	SHELL
 
-	# Uncomment these lines to add an additional VM
-	config.vm.define "devops-box-additional" do |devops|
-		devops.vm.box = BOX_IMAGE
-		devops.vm.provider "virtualbox" do |v|
-			v.name = "devops-box-additional"
-			v.memory = MEMORY
-    		v.cpus = CPU
-		end
-		devops.vm.provision "shell", path: "scripts/install.sh"
-		devops.vm.provision "shell", inline: <<-SHELL
-			hostnamectl set-hostname devops-box-additional
-			apt -y update && apt -y upgrade
-		SHELL
+	(1..NODE_COUNT).each do |i|
+        config.vm.define "devops-box-#{i}" do |subconfig|
+            subconfig.vm.provider "virtualbox" do |v|
+                v.name = "devops-box-#{i}"
+            end
+            subconfig.vm.provision "shell", inline: <<-SHELL
+				hostnamectl set-hostname devops-box-#{i}
+		    SHELL
+        end
 	end
+	
+	# Addtional Optional Paramaters
+	# config.vm.box_check_update = false
+	# config.vm.network "public_network", bridge: "en0: Wi-Fi (Wireless)" 
+	# config.vm.network "forwarded_port", guest: 80, host: 8080
+	# config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
+	# Create a private network, which allows host-only access to the machine using a specific IP.
+	# config.vm.network "private_network", ip: "192.168.33.10"
+	# config.vm.synced_folder "../data", "/vagrant_data"
 
 end
 
@@ -47,10 +49,3 @@ end
 #vagrant box update
 #vagrant box prune
 #vagrant reload --provision
-# config.vm.box_check_update = false
-# config.vm.network "forwarded_port", guest: 80, host: 8080
-# config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-# Create a private network, which allows host-only access to the machine
-# using a specific IP.
-# config.vm.network "private_network", ip: "192.168.33.10"
-# config.vm.synced_folder "../data", "/vagrant_data"

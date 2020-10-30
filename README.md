@@ -1,6 +1,6 @@
 # DevOps box
 
-- A Vagrant project to set up an instance of Ubuntu 20.04 on Virtualbox with DevOps tools
+- A Vagrant project to set up an instance/s of Ubuntu 20.04 on Virtualbox with DevOps tools
 
 # Tools included (Latest Versions)
 
@@ -27,7 +27,7 @@ brew cask install virtualbox vagrant # Install VirtualBox and vagrant
 git clone https://github.com/sharjeelsayed/devops-box.git && cd devops-box  && vagrant box update && vagrant up # Setup and launch an Ubuntu instance on VirtualBox
 
 vagrant ssh-config >> "$HOME"/.ssh/config  # Configure ssh for login
-ssh devops-box  # Connect to your new instance without a password
+ssh devops-box-1  # Connect to your new instance without a password
 ```
 
 # Connecting via VSCode
@@ -35,7 +35,7 @@ ssh devops-box  # Connect to your new instance without a password
 ```shell
 brew cask install visual-studio-code && code # Install and launch VSCode
 
-Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box"
+Press ⌘⇧P -> "Remote-SSH: Connect to Host" -> Click on "devops-box-1"
 Voila..You are connected !!
 ```
 
