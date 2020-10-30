@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "shell", path: "scripts/install.sh"
 	config.vm.provision "shell", inline: <<-SHELL
 		apt -y update && apt -y upgrade
+		#yum -y update
 	SHELL
 
 	(1..NODE_COUNT).each do |i|
