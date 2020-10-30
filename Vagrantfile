@@ -1,7 +1,8 @@
+VM_NAME = "devops-box"
 BOX_IMAGE = "bento/ubuntu-20.04"
 MEMORY = 1024
 CPU = 1
-NODE_COUNT = 1
+NODE_COUNT = 2
 
 Vagrant.configure("2") do |config|
 	
@@ -17,12 +18,12 @@ Vagrant.configure("2") do |config|
 	SHELL
 
 	(1..NODE_COUNT).each do |i|
-        config.vm.define "devops-box-#{i}" do |subconfig|
+        config.vm.define "#{VM_NAME}-#{i}" do |subconfig|
             subconfig.vm.provider "virtualbox" do |v|
-                v.name = "devops-box-#{i}"
+                v.name = "#{VM_NAME}-#{i}"
             end
             subconfig.vm.provision "shell", inline: <<-SHELL
-				hostnamectl set-hostname devops-box-#{i}
+				hostnamectl set-hostname #{VM_NAME}-#{i}
 		    SHELL
         end
 	end
@@ -38,14 +39,15 @@ Vagrant.configure("2") do |config|
 
 end
 
-#References:
-#https://manski.net/2016/09/vagrant-multi-machine-tutorial
-#https://www.vagrantup.com/docs/cli/box
-#https://www.vagrantup.com/docs/cli/reload
-#https://www.vagrantup.com/docs/multi-machine
-#https://www.vagrantup.com/docs/networking/public_network
-#https://www.vagrantup.com/docs/providers/virtualbox/configuration
-#https://youtu.be/vBreXjkizgo #Vagrant Crash Course by  Traversy Media
-#vagrant box update
-#vagrant box prune
-#vagrant reload --provision
+# References:
+# https://manski.net/2016/09/vagrant-multi-machine-tutorial
+# https://www.vagrantup.com/docs/cli/box
+# https://www.vagrantup.com/docs/cli/reload
+# https://www.vagrantup.com/docs/multi-machine
+# https://www.vagrantup.com/docs/networking/public_network
+# https://www.vagrantup.com/docs/providers/virtualbox/configuration
+# https://youtu.be/vBreXjkizgo #Vagrant Crash Course by  Traversy Media
+# vagrant box update
+# vagrant box prune
+# vagrant reload --provision
+# vagrant destroy -f
