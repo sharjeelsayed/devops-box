@@ -65,4 +65,5 @@ packer_install
 # clean up
 if [ ! ${REDHAT_BASED} ] ; then
   apt clean
+  apt autoremove --purge
 fi
