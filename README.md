@@ -1,6 +1,8 @@
-# DevOps box
+# DevOps box and Kubernetes or Docker Swarm Nodes
 
-- A Vagrant project to set up an instance/s of Ubuntu 20.04 on Virtualbox with DevOps tools
+- A Vagrant project to set Ubuntu 20.04 on Virtualbox with DevOps tools
+- Multiple VMs can be also be setup to act as Kubernetes or Docker Swarm Nodes. Edit the value of the NODE_COUNT in the [Vagrantfile](https://github.com/sharjeelsayed/devops-box/blob/master/Vagrantfile) to setup the number of nodes you need.
+- Additional parameters like OS Image , CPU and Memory can also be set at [Vagrantfile](https://github.com/sharjeelsayed/devops-box/blob/master/Vagrantfile)
 
 # Tools included (Latest Versions)
 
