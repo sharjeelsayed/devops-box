@@ -1,8 +1,5 @@
 #!/bin/bash
 
-logFile="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/$(basename "$0").log"
-exec > "$logFile" 2>&1
-
 # remove comment if you want to enable debugging
 #set -x
 
@@ -27,9 +24,6 @@ UpdateInstance()
 EssentialInstall()
 {
     sudo apt -y install net-tools curl unzip tmux jq graphviz wget
-    #echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
-    #echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
-    #sudo apt -y install iptables-persistent
 }
 
 ChronyInstall()
@@ -38,6 +32,19 @@ ChronyInstall()
     sudo systemctl start chrony
     sudo systemctl enable chrony
     sudo timedatectl set-timezone Asia/Kolkata
+}
+
+UfwSetup()
+{
+    sudo apt -y install ufw
+    sudo ufw status
+    sudo ufw disable
+    echo "y" | sudo ufw reset
+    sudo ufw default allow outgoing
+    sudo ufw allow ssh
+    #sudo ufw allow 80/tcp
+    echo "y" | sudo ufw enable
+    sudo ufw status
 }
 
 aws_cli_install()
@@ -56,6 +63,20 @@ DockerInstall()
     docker_user=vagrant # Define the username which will run Docker
     sudo useradd $docker_user -s /bin/bash -m -G sudo
     sudo usermod -aG docker $docker_user
+}
+
+MiniKubeInstall()
+{
+    wget https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    chmod +x minikube-linux-amd64
+    sudo mv minikube-linux-amd64 /usr/local/bin/minikube
+    snap install kubectl --classic
+    # Run the following commands with $docker_user defined in the DockerInstall function
+    #docker_user=ubuntu
+    #su - $docker_user
+    #minikube config set driver docker
+    #minikube delete
+    #minikube start
 }
 
 Ansible_Install()
@@ -84,8 +105,10 @@ packer_install()
 UpdateInstance
 EssentialInstall
 ChronyInstall
+#UfwSetup
 aws_cli_install
 terraform_install
 packer_install
 Ansible_Install
 DockerInstall
+MiniKubeInstall
