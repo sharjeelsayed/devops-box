@@ -23,7 +23,7 @@ UpdateInstance()
 
 EssentialInstall()
 {
-    sudo apt -y install net-tools curl unzip tmux jq graphviz wget
+    sudo apt -y install net-tools curl unzip tmux jq wget git
 }
 
 ChronyInstall()
@@ -87,6 +87,7 @@ Ansible_Install()
 terraform_install()
 {
   # Terraform Installation
+  sudo apt -y install graphviz
   TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')
   wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
   && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \

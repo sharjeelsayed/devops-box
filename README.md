@@ -11,11 +11,11 @@
 - AWS EB CLI
 - Docker
 - Git
-- Graphviz
-- jq
+- MiniKube
 - Packer
 - Terraform
 - Ubuntu 20.04 LTS Focal Fossa
+- ufw
 - VirtualBox
 - VSCode
 
