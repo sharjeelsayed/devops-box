@@ -49,10 +49,10 @@ UfwSetup()
 
 aws_cli_install()
 {
-  # Install awscli and ebcli
-  sudo apt -y install python3-pip
-  pip3 install -U awscli
-  pip3 install -U awsebcli  
+    # Install awscli and ebcli
+    sudo apt -y install python3-pip
+    pip3 install -U awscli
+    pip3 install -U awsebcli  
 }
 
 DockerInstall()
@@ -86,21 +86,21 @@ Ansible_Install()
 
 terraform_install()
 {
-  # Terraform Installation
-  sudo apt -y install graphviz
-  TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')
-  wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
-  && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
-  && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+    # Terraform Installation
+    sudo apt -y install graphviz jq
+    TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r -M '.current_version')
+    wget -q https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
+    && unzip -o terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/local/bin \
+    && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 }
 
 packer_install()
 {
-  # Packer Installation
-  PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r -M '.current_version')
-  wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
-  && unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin \
-  && rm packer_${PACKER_VERSION}_linux_amd64.zip
+    # Packer Installation
+    PACKER_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/packer | jq -r -M '.current_version')
+    wget -q https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip \
+    && unzip -o packer_${PACKER_VERSION}_linux_amd64.zip -d /usr/local/bin \
+    && rm packer_${PACKER_VERSION}_linux_amd64.zip
 }
 
 UpdateInstance
