@@ -72,7 +72,7 @@ MiniKubeInstall()
     sudo mv minikube-linux-amd64 /usr/local/bin/minikube
     snap install kubectl --classic
     # Run the following commands with $docker_user defined in the DockerInstall function
-    #docker_user=ubuntu
+    #docker_user=vagrant
     #su - $docker_user
     #minikube config set driver docker
     #minikube delete
