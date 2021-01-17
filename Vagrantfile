@@ -1,8 +1,8 @@
 VM_NAME = "devops-box"
 BOX_IMAGE = "bento/ubuntu-20.04"
-MEMORY = 1024
+MEMORY = 2048
 CPU = 2
-NODE_COUNT = 2
+NODE_COUNT = 1
 
 Vagrant.configure("2") do |config|
 	
