@@ -1,11 +1,10 @@
 #!/bin/bash
 
+logFile="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/$(basename "$0").log"
+exec > "$logFile" 2>&1
+
 # remove comment if you want to enable debugging
 #set -x
-
-if [ -e /etc/redhat-release ] ; then
-  REDHAT_BASED=true
-fi
 
 # create new ssh key
 : '
@@ -15,29 +14,53 @@ fi
 && chown -R ubuntu:ubuntu /home/ubuntu/.ssh
 '
 
-# Install Core packages
-if [ ${REDHAT_BASED} ] ; then
-  yum -y update
-  yum install -y ansible chrony curl docker graphviz jq net-tools unzip wget
-else 
-  apt -y update && apt -y upgrade
-  apt -y install ansible chrony curl docker.io graphviz jq net-tools python3-pip unzip
-fi
+UpdateInstance()
+{
+# update and upgrade all packages
+    sudo apt -y update && apt -y upgrade
+    sudo apt clean
+    sudo apt autoremove --purge
+    sudo snap install core
+    sudo snap refresh core
+}
 
-# Enable and start Chrony
-systemctl start chrony
-systemctl enable chrony
-timedatectl set-timezone Asia/Kolkata #Set Time Zone to IST
+EssentialInstall()
+{
+    sudo apt -y install net-tools curl unzip tmux jq graphviz wget
+    #echo iptables-persistent iptables-persistent/autosave_v4 boolean true | sudo debconf-set-selections
+    #echo iptables-persistent iptables-persistent/autosave_v6 boolean true | sudo debconf-set-selections
+    #sudo apt -y install iptables-persistent
+}
 
-# Add docker privileges
-#usermod -G docker ubuntu
-usermod -G docker vagrant
+ChronyInstall()
+{
+    sudo apt -y install chrony
+    sudo systemctl start chrony
+    sudo systemctl enable chrony
+    sudo timedatectl set-timezone Asia/Kolkata
+}
 
 aws_cli_install()
 {
   # Install awscli and ebcli
+  sudo apt -y install python3-pip
   pip3 install -U awscli
   pip3 install -U awsebcli  
+}
+
+DockerInstall()
+{
+    sudo curl -sSL https://get.docker.com/ | sh
+    sudo systemctl is-active --quiet docker && echo docker is running
+    
+    docker_user=vagrant # Define the username which will run Docker
+    sudo useradd $docker_user -s /bin/bash -m -G sudo
+    sudo usermod -aG docker $docker_user
+}
+
+Ansible_Install()
+{
+    sudo apt -y install ansible
 }
 
 terraform_install()
@@ -58,12 +81,11 @@ packer_install()
   && rm packer_${PACKER_VERSION}_linux_amd64.zip
 }
 
+UpdateInstance
+EssentialInstall
+ChronyInstall
 aws_cli_install
 terraform_install
 packer_install
-
-# clean up
-if [ ! ${REDHAT_BASED} ] ; then
-  apt clean
-  apt autoremove --purge
-fi
+Ansible_Install
+DockerInstall
