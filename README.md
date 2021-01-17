@@ -44,9 +44,15 @@ Voila..You are connected !!
 # Sources
 
 https://app.vagrantup.com/boxes/search?utf8=%E2%9C%93&sort=downloads&provider=virtualbox&q=ubuntu  
+https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user  
+https://docs.docker.com/engine/install/ubuntu  
+https://github.com/docker/docker-install  
 https://github.com/wardviaene/devops-box  
 https://manski.net/2016/09/vagrant-multi-machine-tutorial  
 https://medium.com/@lizrice/ssh-to-vagrant-from-vscode-5b2c5996bc0e  
+https://minikube.sigs.k8s.io/docs/drivers/docker  
+https://minikube.sigs.k8s.io/docs/start  
+https://registry.terraform.io/providers/digitalocean/digitalocean/latest/docs  
 https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh  
 https://www.vagrantup.com/docs/cli/box  
 https://www.vagrantup.com/docs/cli/reload  
