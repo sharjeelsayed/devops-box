@@ -14,6 +14,7 @@
 UpdateInstance()
 {
 # update and upgrade all packages
+    yes | dpkg --configure -a
     sudo apt -y update && sudo apt -y upgrade
     sudo apt clean
     sudo apt autoremove -y --purge
