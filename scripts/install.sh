@@ -14,9 +14,9 @@
 UpdateInstance()
 {
 # update and upgrade all packages
-    sudo apt -y update && apt -y upgrade
+    sudo apt -y update && sudo apt -y upgrade
     sudo apt clean
-    sudo apt autoremove --purge
+    sudo apt autoremove -y --purge
     sudo snap install core
     sudo snap refresh core
 }
@@ -103,6 +103,13 @@ packer_install()
     && rm packer_${PACKER_VERSION}_linux_amd64.zip
 }
 
+eksctlInstall()
+{
+    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+    sudo mv /tmp/eksctl /usr/local/bin
+    eksctl version
+}
+
 UpdateInstance
 EssentialInstall
 ChronyInstall
@@ -113,3 +120,4 @@ packer_install
 Ansible_Install
 DockerInstall
 MiniKubeInstall
+eksctlInstall

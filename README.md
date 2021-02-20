@@ -10,6 +10,7 @@
 - AWS CLI
 - AWS EB CLI
 - Docker
+- eksctl
 - Git
 - MiniKube
 - Packer
